@@ -1,21 +1,20 @@
 <script>
-  function binarySearch(list, item) {
-    let low = 0;
-    let high = list.length - 1;
+  function binarySearch(searchData, searchValue) {
+    let min = 0;
+    let max = searchData.length - 1;
+    let guess;
 
-    while (low <= high) {
-      let mid = low + high;
-      let guess = list[mid];
-
-      if (guess === item) return mid;
-      if (guess > item) return mid - 1;
-      else low = mid + 1;
-
-      return null;
+    while (min <= max) {
+      guess = Math.floor((max + min) / 2);
+    
+      if (searchData[guess] === searchValue) return "Found in position " + guess;
+      else if (searchData[guess] < searchValue) min = guess++;
+      else max = guess - 1;
     }
-    const my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-    console.log(binarySearch(my_list, 3));
-    console.log(binarySearch(my_list, -1));
+    return "Does not found";
   }
+  let data = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  console.log(binarySearch(data, 8));
+  console.log(binarySearch(data, -1));
 </script>
